@@ -2,6 +2,7 @@ import time
 import requests
 import random
 
+
 def generate_haiku():
     syllables = [5, 7, 5]
     haiku = []
