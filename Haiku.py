@@ -12,8 +12,8 @@ def generate_haiku():
     return '\n'.join(haiku)
 
 def post_to_discord(haiku):
-   webhook_url = 'https://discord.com/channels/1336355522215153688/1336355522818998397' # I had to add a URL that works for it to not error out just used one for a Server I just created
-   payload = { 'content': haiku }
+   webhook_url = 'https://discord.com/api/webhooks/1339685758273061016/COYZDNyTFckb1PX2PDalu-LUnaea-BEIeQsG9c4ca1my9x2dZTmITiFinjRkjN0Dhini' # I had to add a URL that works for it to not error out just used one for a Server I just created
+   payload = { "content": f"Generated Haiku Group 6:\n{haiku}" }
    response = requests.post(webhook_url, json=payload)
    print(response.status_code)
    print("Haiku posted to Discord:")
