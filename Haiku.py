@@ -23,4 +23,3 @@ def post_to_discord(haiku):
 if __name__ == "__main__":
     haiku = generate_haiku()
     post_to_discord(haiku)
-    
