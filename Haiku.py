@@ -23,18 +23,24 @@ def count_syllables(word):
 def generate_haiku(headline_list):
     syllables = [5, 7, 5]
     haiku = []
+    
     for s in syllables:
         line = []
         current_syllables = 0
         while current_syllables < s:
-            word = random.choice(random.choice(headline_list).split())
-            current_syllables += count_syllables(word)
-            line.append(word)
-            if current_syllables > s:
-                line = []
-                current_syllables = 0
+            phrase = random.choice(headline_list).split(",")[0]  # Extract a phrase from a headline
+            phrase_words = phrase.split()
+            phrase_syllables = sum(count_syllables(word) for word in phrase_words)
+            
+            if current_syllables + phrase_syllables <= s:
+                current_syllables += phrase_syllables
+                line.extend(phrase_words)
+            else:
+                continue
+        
         haiku.append(' '.join(line))
     return '\n'.join(haiku)
+
 
 def post_to_discord(haiku):
     webhook_url = 'https://discord.com/api/webhooks/1340312593788829728/MJU1rql7G615JsjkZgLEaE72ujdui3pIgA0kcOFUbGduamLGeCU_vrtjcGBxol0gsYiS'
@@ -45,7 +51,7 @@ def post_to_discord(haiku):
     print(haiku)
 
 if __name__ == "__main__":
-    url = "http://rss.cnn.com/rss/edition.rss"
+    url = "https://feeds.feedburner.com/AndroidPolice"
     headlines = scrape_headlines(url)
     if headlines:
         haiku = generate_haiku(headlines)
