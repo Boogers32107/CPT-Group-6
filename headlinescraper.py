@@ -17,7 +17,7 @@ def scrape_headlines(url):
         return []
 
 if __name__ == "__main__":
-    url = "https://feeds.washingtonpost.com/rss/world"
+    url = "http://rss.cnn.com/rss/edition.rss"
     headlines = scrape_headlines(url)
     if headlines:
         print(headlines)

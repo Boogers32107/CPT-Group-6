@@ -45,7 +45,7 @@ def post_to_discord(haiku):
     print(haiku)
 
 if __name__ == "__main__":
-    url = "https://feeds.washingtonpost.com/rss/world"
+    url = "http://rss.cnn.com/rss/edition.rss"
     headlines = scrape_headlines(url)
     if headlines:
         haiku = generate_haiku(headlines)
