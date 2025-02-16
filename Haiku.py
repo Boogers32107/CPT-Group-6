@@ -1,7 +1,7 @@
 import requests
 import random
 import re
-from titlescraper import scrape_titles
+from headlinescraper import scrape_headlines
 
 def count_syllables(word):
     word = word.lower()
@@ -20,14 +20,14 @@ def count_syllables(word):
         count += 1
     return count
 
-def generate_haiku(titles_list):
+def generate_haiku(headline_list):
     syllables = [5, 7, 5]
     haiku = []
     for s in syllables:
         line = []
         current_syllables = 0
         while current_syllables < s:
-            word = random.choice(random.choice(titles_list).split())
+            word = random.choice(random.choice(headline_list).split())
             current_syllables += count_syllables(word)
             line.append(word)
             if current_syllables > s:
@@ -37,7 +37,7 @@ def generate_haiku(titles_list):
     return '\n'.join(haiku)
 
 def post_to_discord(haiku):
-    webhook_url = 'https://discord.com/api/webhooks/1339685758273061016/COYZDNyTFckb1PX2PDalu-LUnaea-BEIeQsG9c4ca1my9x2dZTmITiFinjRkjN0Dhini'
+    webhook_url = 'https://discord.com/api/webhooks/1340312593788829728/MJU1rql7G615JsjkZgLEaE72ujdui3pIgA0kcOFUbGduamLGeCU_vrtjcGBxol0gsYiS'
     payload = { "content": f"Generated Haiku Group 6:\n{haiku}" }
     response = requests.post(webhook_url, json=payload)
     print(response.status_code)
@@ -46,7 +46,7 @@ def post_to_discord(haiku):
 
 if __name__ == "__main__":
     url = "https://feeds.washingtonpost.com/rss/world"
-    titles = scrape_titles(url)
-    if titles:
-        haiku = generate_haiku(titles)
+    headlines = scrape_headlines(url)
+    if headlines:
+        haiku = generate_haiku(headlines)
         post_to_discord(haiku)
