@@ -17,7 +17,7 @@ def scrape_headlines(url):
         return []
 
 if __name__ == "__main__":
-    url = "https://feeds.feedburner.com/AndroidPolice"
+    url = "https://moxie.foxnews.com/google-publisher/latest.xml"
     headlines = scrape_headlines(url)
     if headlines:
         print(headlines)

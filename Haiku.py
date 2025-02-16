@@ -28,10 +28,10 @@ def generate_haiku(headline_list):
         line = []
         current_syllables = 0
         while current_syllables < s:
-            phrase = random.choice(headline_list).split(",")[0]  # Extract a phrase from a headline
+            phrase = random.choice(headline_list).split(" ")
+            phrase = random.choice(phrase)
             phrase_words = phrase.split()
             phrase_syllables = sum(count_syllables(word) for word in phrase_words)
-            
             if current_syllables + phrase_syllables <= s:
                 current_syllables += phrase_syllables
                 line.extend(phrase_words)
@@ -51,7 +51,7 @@ def post_to_discord(haiku):
     print(haiku)
 
 if __name__ == "__main__":
-    url = "https://feeds.feedburner.com/AndroidPolice"
+    url = "https://moxie.foxnews.com/google-publisher/latest.xml"
     headlines = scrape_headlines(url)
     if headlines:
         haiku = generate_haiku(headlines)
