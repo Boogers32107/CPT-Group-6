@@ -43,7 +43,7 @@ def generate_haiku(headline_list):
 
 
 def post_to_discord(haiku):
-    webhook_url = 'https://discord.com/api/webhooks/1340312593788829728/MJU1rql7G615JsjkZgLEaE72ujdui3pIgA0kcOFUbGduamLGeCU_vrtjcGBxol0gsYiS'
+    webhook_url = 'https://discord.com/api/webhooks/1339685758273061016/COYZDNyTFckb1PX2PDalu-LUnaea-BEIeQsG9c4ca1my9x2dZTmITiFinjRkjN0Dhini'
     payload = { "content": f"Generated Haiku Group 6:\n{haiku}" }
     response = requests.post(webhook_url, json=payload)
     print(response.status_code)
