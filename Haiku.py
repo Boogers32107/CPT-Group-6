@@ -20,14 +20,14 @@ def count_syllables(word):
         count += 1
     return count
 
-def generate_haiku(headline_list):
+def generate_haiku(titles_list):
     syllables = [5, 7, 5]
     haiku = []
     for s in syllables:
         line = []
         current_syllables = 0
         while current_syllables < s:
-            word = random.choice(random.choice(headline_list).split())
+            word = random.choice(random.choice(titles_list).split())
             current_syllables += count_syllables(word)
             line.append(word)
             if current_syllables > s:
@@ -46,7 +46,7 @@ def post_to_discord(haiku):
 
 if __name__ == "__main__":
     url = "https://feeds.washingtonpost.com/rss/world"
-    headlines = scrape_headlines(url)
-    if headlines:
-        haiku = generate_haiku(headlines)
+    titles = scrape_titles(url)
+    if titles:
+        haiku = generate_haiku(titles)
         post_to_discord(haiku)
